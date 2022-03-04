@@ -47,9 +47,10 @@ function earmic {
     if [ "$1" = "off" ];
     then
         profile="a2dp_sink"
+		echo "Bluetooth mic is OFF"
     else
-        #profile="headset_head_unit"
 		profile="handsfree_head_unit"
+		echo "Bluetooth mic in ON"
     fi
 
     pacmd set-card-profile bluez_card.74_45_CE_54_97_31 $profile
@@ -66,6 +67,15 @@ function bt {
 			case "$1" in
 				on)
 				bluetoothctl power on
+				;;
+				off)
+				bluetoothctl power off
+				;;
+				mic)
+				earmic
+				;;
+				mute)
+				earmic off
 				;;
 				scan)
 				bluetoothctl scan on
