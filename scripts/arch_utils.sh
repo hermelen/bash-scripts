@@ -21,6 +21,11 @@ function ssyn {
 	~/.screenlayout/synergee.sh
 }
 
+function stv {
+	~/.screenlayout/tv.sh
+}
+
+
 function sch {
 	~/.screenlayout/chanac.sh
 }
