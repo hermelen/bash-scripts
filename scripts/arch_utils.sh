@@ -43,7 +43,7 @@ function work {
 	rider ~/workspace/synergee/retaildrive-frontend &>/dev/null
 }
 
-function earmic {
+function earmic1 {
     if [ "$1" = "off" ];
     then
         profile="a2dp_sink"
@@ -54,6 +54,19 @@ function earmic {
     fi
 
     pacmd set-card-profile bluez_card.74_45_CE_54_97_31 $profile
+}
+
+function earmic2 {
+    if [ "$1" = "off" ];
+    then
+        profile="a2dp_sink"
+		echo "Bluetooth mic is OFF"
+    else
+		profile="handsfree_head_unit"
+		echo "Bluetooth mic in ON"
+    fi
+
+    pacmd set-card-profile bluez_card.FC_58_FA_AF_BE_71 $profile
 }
 
 function bt {
@@ -71,11 +84,17 @@ function bt {
 				off)
 				bluetoothctl power off
 				;;
-				mic)
-				earmic
+				mic1)
+				earmic1
 				;;
-				mute)
-				earmic off
+				mic2)
+				earmic2
+				;;
+				mute1)
+				earmic1 off
+				;;
+				mute2)
+				earmic2 off
 				;;
 				scan)
 				bluetoothctl scan on
@@ -95,7 +114,7 @@ function bt {
 				echo "https://bbs.archlinux.org/viewtopic.php?pid=1921917#p1921917/"
 				;;
 				*)
-				echo "Usage: (bt on | bt scan | bt paired)"
+				echo "Usage: (bt on | bt scan | bt paired | bt mic1 | bt mic2 | bt mute1 | bt mute2)"
 				;;
 			esac
 		fi
