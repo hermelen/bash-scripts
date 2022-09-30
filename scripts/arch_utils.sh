@@ -105,7 +105,7 @@ function bt {
 				bluetoothctl scan on
 				;;
 				paired)
-				bluetoothctl paired-devices
+				bluetoothctl devices
 				;;
 				--help | -h)
 				echo "List cards to find the card name and available profiles:"
