@@ -145,6 +145,11 @@ function bt {
 	fi
 }
 
+function pass {
+    cd ~/workspace/perso/keepassxc && git pull
+}
+
+
 #function work {    
 #    sleep 1 && i3-msg workspace 4 && rider ~/workspace/synergee/retaildrive-frontend && sleep 3 &&
 #    i3-msg workspace 3 && sleep 0.5 && pcmanfm ~/workspace/synergee & sleep 2 &&
