@@ -1,148 +1,17 @@
 #!/bin/bash
 
-function vrun {
-        echo ${SUDOPASS} | sudo -S -k virsh start win10 &> /dev/null
-	remote-viewer spice://localhost:5900  &> /dev/null
-}
-
-function win {
-        echo ${SUDOPASS} | sudo -S -k virsh start win10 &> /dev/null
-}
-
-function vshow {
-	remote-viewer spice://localhost:5900  &> /dev/null
-}
-
-function vstop {
-	sudo virsh shutdown win10
-}
-
 function ssyn {
 	~/.screenlayout/synergee.sh
 }
 
-function stv {
-	~/.screenlayout/tv.sh
-}
-
-
-function sch {
-	~/.screenlayout/chanac.sh
-}
-
 function ssolo {
-	~/.screenlayout/solo.sh
-}
-
-function sfonta {
-	~/.screenlayout/fonta.sh
-}
-
-function scor {
-	~/.screenlayout/covid19.sh
+	~/.screenlayout/one.sh
 }
 
 function work {
 	chromium &>/dev/null
 	pcmanfm ~/workspace/synergee &>/dev/null
 	rider ~/workspace/synergee/retaildrive-frontend &>/dev/null
-}
-
-function earmic1 {
-    if [ "$1" = "off" ];
-    then
-        profile="a2dp_sink"
-		echo "Bluetooth mic is OFF"
-    else
-		profile="handsfree_head_unit"
-		echo "Bluetooth mic in ON"
-    fi
-
-    pacmd set-card-profile bluez_card.74_45_CE_54_97_31 $profile
-}
-
-function earmic2 {
-    if [ "$1" = "off" ];
-    then
-        profile="a2dp_sink"
-		echo "Bluetooth mic is OFF"
-    else
-		profile="handsfree_head_unit"
-		echo "Bluetooth mic in ON"
-    fi
-
-    pacmd set-card-profile bluez_card.FC_58_FA_AF_BE_71 $profile
-}
-
-function bt {
-	if [ $# -lt 1 ]
-	then
-        echo "This function takes at least 1 parameter"
-        echo 'For example: bt on'
-    else
-		if [ $# -eq 1 ]
-		then
-			case "$1" in
-				on)
-				bluetoothctl power on
-				;;
-				off)
-				bluetoothctl power off
-				;;
-				mic1)
-				earmic1
-				;;
-				mic2)
-				earmic2
-				;;
-				mute1)
-				earmic1 off
-				;;
-				mute2)
-				earmic2 off
-				;;
-				scan)
-				bluetoothctl scan on
-				;;
-				paired)
-				bluetoothctl devices
-				;;
-				--help | -h)
-				echo "List cards to find the card name and available profiles:"
-				echo " - pacmd list-cards"
-				echo ""
-				echo "Enable the mic by selecting the HSP/HFP profile:"
-				echo " - pacmd set-card-profile <card-name> headset_head_unit"
-				echo " - ex: pacmd set-card-profile bluez_card.74_45_CE_54_97_31 headset_head_unit"
-				echo ""
-				echo "Source:"
-				echo "https://bbs.archlinux.org/viewtopic.php?pid=1921917#p1921917/"
-				;;
-				*)
-				echo "Usage: (bt on | bt scan | bt paired | bt mic1 | bt mic2 | bt mute1 | bt mute2)"
-				;;
-			esac
-		fi
-
-		if [ $# -eq 2 ]
-		then
-			case "$1" in
-				pair)
-				bluetoothctl pair $2
-				;;
-				connect)
-				bluetoothctl connect $2
-				;;
-				*)
-				echo "Usage: (bt pair <device-IP> | bt connect <device-IP>)"
-				;;
-			esac
-		fi
-		if [ $# -gt 2 ]
-		then
-			echo "This function takes 2 parameters maximum"
-		fi
-	fi
 }
 
 function pass {
