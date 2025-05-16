@@ -4,6 +4,10 @@ function ssyn {
 	~/.screenlayout/synergee.sh
 }
 
+function sasus {
+	~/.screenlayout/asus.sh
+}
+
 function ssolo {
 	~/.screenlayout/one.sh
 }
